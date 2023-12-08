@@ -71,9 +71,9 @@ authListenerMiddleware.startListening({
       }
     } catch (error) {
       if (error instanceof TaskAbortError && action.type === startApp.type) {
-        console.warn("authListenerMiddleware abort due to re-startApp")
+        // console.warn("authListenerMiddleware abort due to re-startApp")
       } else {
-        console.error("authListenerMiddleware error:", error)
+        // console.error("authListenerMiddleware error:", error)
       }
     }
 

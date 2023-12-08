@@ -2,7 +2,6 @@ import { createAction, createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from ".."
 import { createAppAsyncThunk } from "@/utils/helpers/thunkHelper"
-import sampleApi from "@/services/api/sampleApi"
 
 const initialState = {
   isLogin: false,
@@ -38,21 +37,24 @@ const appSlice = createSlice({
  */
 export const initAppAsync = createAppAsyncThunk(
   `${appSlice.name}/initAppAsync`,
-  async (_, thunkApi) => {
-    try {
-      const response = await thunkApi
-        .dispatch(sampleApi.endpoints.SampleGetConfig.initiate(null))
-        .unwrap()
-      if (response.header.returnCode.isSuccessCode()) {
-        thunkApi.dispatch(startApp())
-        return true
-      } else {
-        return false
-      }
-    } catch (error) {
-      return false
-    }
-  }
+  () => true
+
+  // 可改為定義非同步邏輯
+  // async (_, thunkApi): Promise<boolean> => {
+  //   try {
+  //     const response = await thunkApi
+  //       .dispatch(sampleApi.endpoints.SampleGetConfig.initiate(null))
+  //       .unwrap()
+  //     if (response.header.returnCode.isSuccessCode()) {
+  //       thunkApi.dispatch(startApp())
+  //       return true
+  //     } else {
+  //       return false
+  //     }
+  //   } catch (error) {
+  //     return false
+  //   }
+  // }
 )
 
 // Extra Actions

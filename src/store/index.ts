@@ -17,7 +17,6 @@ import {
 } from "redux-persist"
 import storage from "redux-persist/es/storage"
 import { AppEnvEnum } from "@/enums/common"
-import authListenerMiddleware from "./middleware/authListenerMiddleware"
 
 const persistConfig = {
   key: appSlice.name,
@@ -41,7 +40,6 @@ const rootReducer = combineReducers({
 const middleware = [
   apiErrorHandleMiddleware,
   apiLoadingMiddleware,
-  // 加入 api middleware 來啟用 caching、invalidation、polling 等其他方法
   baseApiService.middleware,
 ]
 
@@ -70,7 +68,8 @@ const initStore = () => {
           ],
         },
       })
-        .prepend(authListenerMiddleware)
+        // 可判斷是否要監聽auth相關的action
+        // .prepend(authListenerMiddleware)
         .concat(middleware),
 
     // dev tools only for development
