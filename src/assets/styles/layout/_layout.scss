@@ -1,0 +1,13 @@
+#root {
+  position: relative;
+  min-height: 100%;
+  // 以上勿動
+}
+
+// <main>
+.content {
+  max-width: $content-max-width;
+  padding-bottom: $footer-height;
+  margin: auto;
+  // 以上勿動
+}

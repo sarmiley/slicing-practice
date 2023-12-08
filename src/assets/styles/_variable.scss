@@ -1,0 +1,133 @@
+/* ====  顏色  ============ */
+$black: #333333;
+
+$primary-100: #f7f5fa;
+$primary-200: #f0ebf5;
+$primary-300: #a494e1;
+$primary-500: #6b52c7;
+$primary-800: #361f89;
+
+$secondary-300: #c7f0df;
+$secondary-500: #43cd94;
+$secondary-700: #20bc7c;
+
+$gray-200: #eeeeee;
+$gray-400: #c8c8c8;
+$gray-500: #757575;
+
+$alert-500: #ee5d5d;
+
+/* ====  文字  ============ */
+$font-family: "Helvetica Neue", "PingFangTC-Regular", "sans-serif",
+  "Noto Sans TC", "微軟正黑體", "Microsoft JhengHei", Verdana;
+$text-bold: 600;
+
+/* ====  其他  ============ */
+$container-radius: 10px;
+$button-radius: 10px;
+$footer-height: 240px;
+$content-max-width: 1200px;
+
+/* ====  斷點  ============ */
+$width-xs: 360px;
+$width-sm: 576px;
+$width-md: 768px;
+$width-lg: 992px;
+$width-xl: 1200px;
+$width-xxl: 1400px;
+
+$breakpoints: (
+  "xs": $width-xs,
+  "sm": $width-sm,
+  "md": $width-md,
+  "lg": $width-lg,
+  "xl": $width-xl,
+  "xxl": $width-xxl,
+);
+
+@mixin media-breakpoint-down($width) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width) - 0.02;
+
+    @media (max-width: $width) {
+      @content;
+    }
+  } @else {
+    @error "breakpoint `#{$width}` not found in `#{$breakpoints}`";
+  }
+}
+
+@mixin media-breakpoint-up($width) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    $current: ceil($width);
+
+    @media (min-width: $current) {
+      @content;
+    }
+  } @else {
+    @error "breakpoint `#{$width}` not found in `#{$breakpoints}`";
+  }
+}
+
+@mixin media-breakpoint-only($width) {
+  @if map_has_key($breakpoints, $width) {
+    $breakpoint-names: map-keys($breakpoints);
+    $n: index($breakpoint-names, $width);
+    $current: map_get($breakpoints, $width);
+    $next: null;
+
+    @if $n == length($breakpoints) {
+      $next: null;
+    } @else {
+      $next: map_get($breakpoints, nth($breakpoint-names, $n + 1)) - 0.02;
+    }
+
+    @if $next {
+      @media (min-width: $current) and (max-width: $next) {
+        @content;
+      }
+    } @else {
+      @media (min-width: $current) {
+        @content;
+      }
+    }
+  } @else {
+    @error "breakpoint `#{$width}` not found in `#{$breakpoints}`";
+  }
+}
+
+/* ====  常用 mixin  ============ */
+
+/* size */
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/* pseudo */
+@mixin pseudo($display: block, $content: "") {
+  display: $display;
+  content: $content;
+}
+
+/* 置中 */
+@mixin position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+@mixin flex($j: null, $a: null) {
+  display: flex;
+  align-items: $a;
+  justify-content: $j;
+}
+
+/* text */
+@mixin text($size: null, $weight: null, $color: null) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}

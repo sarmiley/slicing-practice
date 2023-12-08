@@ -1,0 +1,11 @@
+@import "normalize.css";
+@import "./variable";
+@import "./common";
+
+// layout
+@import "./layout/layout";
+@import "./layout/loading";
+@import "./layout/footer";
+
+// margin padding
+@import "./space";
