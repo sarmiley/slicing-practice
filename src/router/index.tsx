@@ -7,6 +7,7 @@ import routerSubscriber from "./routerSubscriber"
 import Login from "@/views/Public/Login"
 import No001 from "@/views/Public/No001"
 import No002 from "@/views/Public/No002"
+import No003 from "@/views/Public/No003"
 
 // 動態載入 component 達到 code splitting  效果，減少第一次載入頁面所需的 bundle size
 const PublicLayout = lazy(() => import("@/views/Public"))
@@ -57,6 +58,16 @@ export const router = createBrowserRouter([
               <CommonRoute
                 title="__documentTitleLanding"
                 children={<No002 />}
+              />
+            ),
+          },
+          {
+            path: "no003",
+            id: "no003",
+            element: Suspense(
+              <CommonRoute
+                title="__documentTitleLanding"
+                children={<No003 />}
               />
             ),
           },

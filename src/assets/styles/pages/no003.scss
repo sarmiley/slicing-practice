@@ -1,0 +1,34 @@
+.no003-container {
+  background-color: #666666;
+}
+.no003-wrap {
+  display: flex;
+  align-items: center;
+  width: 1200px;
+  height: 100vh;
+  margin: auto;
+}
+
+.no003-item {
+  width: 368px;
+  margin: 15px;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+
+.no003-item img {
+  width: 100%;
+}
+
+.no003-item h2 {
+  padding-bottom: 0.3em;
+  margin-bottom: 0.4em;
+  font-weight: 900;
+  border-bottom: 1px solid #888888;
+}
+
+.no003-item p {
+  font-weight: 300;
+  line-height: 1.5;
+}
